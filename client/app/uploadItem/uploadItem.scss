@@ -1,0 +1,16 @@
+.upload-item {
+  margin-top: 20px;
+  .drop-area {
+    border: 2px dashed $brand-primary;
+    border-radius: 10px;
+    text-align: center;
+    .text {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  .new {
+    height: 120px;
+    line-height: 100px;
+  }
+}

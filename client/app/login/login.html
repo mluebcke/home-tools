@@ -1,0 +1,28 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-offset-3 col-xs-6">
+      <form class="form form-horizontal">
+        <div class="form-group">
+          <label for="nickname">Nickname</label>
+          <input class="form-control" id="nickname" type="text" ng-model="nickname" placeholder="Dein Nickname">
+        </div>
+        <div class="form-group">
+          <label for="password">Passwort</label>
+          <input class="form-control" id="password" type="password" ng-model="password" placeholder="Dein Passwort">
+        </div>
+        <div class="btn btn-primary pull-right" ng-click="login()"><i class="glyphicon glyphicon-log-in"></i> Einloggen</div>
+        <div ng-show="error" class="alert alert-error">Fehler bei der Anmeldung: {{error}}</div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>Angular Fullstack v2.0.13 |
+      <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
+      <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+  </div>
+</footer>

@@ -1,0 +1,25 @@
+<div class="upload-item"
+     ngf-select ngf-drop ngf-drop-available="true" ngf-drag-over-class="'dragover'"
+     ngf-select-disabled="file.done" ngf-drop-disabled="file.done"
+     ng-model="uploadFile">
+  <div class="new drop-area text-center" ng-if="file.isNew">
+    <h3 class="text">
+      <i class="glyphicon glyphicon-cloud-upload"></i> Datei hier hereinziehen ... oder klicken
+    </h3>
+  </div>
+  <div ng-if="!file.isNew">
+    <h3>{{file.filename}}</h3>
+
+    <div class="col-xs-2 drop-area" ng-show="!file.done">
+      <span class="text"><i class="glyphicon glyphicon-cloud-upload"></i> Fortsetzen</span>
+    </div>
+    <div class="col-xs-10" ng-class="file.done ? 'col-xs-offset-2' : ''">
+      <uib-progressbar ng-class="!file.done ? 'progress-striped active' : ''" max="ui.percentageMax" value="ui.percentage">
+      <span style="color:white; white-space:nowrap;">
+        <span ng-show="!file.done">{{ui.percentage | number:0}} %</span>
+        <span ng-show="file.done">Erfolgreich hochgeladen!</span>
+      </span>
+      </uib-progressbar>
+    </div>
+  </div>
+</div>
