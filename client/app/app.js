@@ -25,9 +25,9 @@ angular.module('pApp', [
     }
 
     $routeProvider
-      .when('/main', {
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl',
+      .when('/upload', {
+        templateUrl: 'app/upload/upload.html',
+        controller: 'UploadCtrl',
         resolve: {
           init: makeInitFunction({ checkSession: true })
         }
@@ -36,8 +36,12 @@ angular.module('pApp', [
         templateUrl: 'app/login/login.html',
         controller: 'LoginCtrl'
       })
+      .when('/logout', {
+        templateUrl: 'app/logout/logout.html',
+        controller: 'LogoutCtrl'
+      })
       .otherwise({
-        redirectTo: '/main'
+        redirectTo: '/upload'
       });
 
     $locationProvider.html5Mode(true);

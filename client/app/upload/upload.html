@@ -1,0 +1,16 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Marcos Uploader</h1>
+    <p class="lead">Draufziehen uns los geht's egal wie groß egal wieviel!</p>
+  </div>
+</header>
+
+<div class="container">
+  <div ng-repeat="file in files" class="row">
+    <upload-item file="file" create-new-callback="createNewFile()"></upload-item>
+  </div>
+</div>
+
+<div ng-include="'components/footer/footer.html'"></div>

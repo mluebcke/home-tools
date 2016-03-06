@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('pApp')
-  .directive('uploadItem', function ($base64, Upload) {
+  .directive('uploadItem', function ($base64, Upload, sessionRepository) {
     return {
-      templateUrl: 'app/uploadItem/uploadItem.html',
+      templateUrl: 'app/upload/uploadItem/uploadItem.html',
       restrict: 'EA',
       scope: {
         file : '=',
@@ -11,7 +11,7 @@ angular.module('pApp')
       },
         link: {
           pre: function (scope, element, attrs) {
-            var CHUNK_SIZE = '1kb';
+            var CHUNK_SIZE = '10MB';
 
             scope.ui = {
               percentage: 0,
@@ -57,6 +57,7 @@ angular.module('pApp')
                 scope.file.done = true;
               }, function (resp) {
                 console.log('Error status: ' + resp.status);
+                sessionRepository.logout();
               }, function (evt) {
                 if (!scope.file.filename) {
                   scope.file.filename = evt.config.data.file.name;

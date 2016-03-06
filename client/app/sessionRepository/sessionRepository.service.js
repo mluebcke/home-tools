@@ -1,11 +1,16 @@
 'use strict';
 
 angular.module('pApp')
-  .service('sessionRepository', function ($http, $cookies) {
+  .service('sessionRepository', function ($location, $http, $cookies) {
     return {
 
       login: function (login, password) {
         return $http.post('/api/session', { 'login': login, 'password': password });
+      },
+
+      logout: function () {
+        $cookies.remove('ht_session');
+        $location.path('/logout');
       },
 
       hasValidSession: function () {

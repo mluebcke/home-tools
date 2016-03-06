@@ -5,16 +5,16 @@ var jwt = require('jsonwebtoken');
 var uuid = require('node-uuid');
 
 var USERS = {
-  'user1' : {
-    firstname : 'first',
-    lastname : 'last',
-    password : 'pwd'
+  'user1': {
+    firstname: 'first',
+    lastname: 'last',
+    password: 'pwd'
   }
 };
 
 var PRIVATE_KEY = uuid.v4();
 
-exports.login = function(req, res) {
+exports.login = function (req, res) {
   var login = req.body.login;
   var user = USERS[login];
 
@@ -26,8 +26,8 @@ exports.login = function(req, res) {
 
   var validUntil = new Date(new Date().getTime() + 6 * 60 * 60 * 1000);
   session.data = {
-    firstname : user.firstname,
-    lastname  : user.lastname,
+    firstname: user.firstname,
+    lastname: user.lastname,
     validUntil: validUntil
   };
 
@@ -37,11 +37,16 @@ exports.login = function(req, res) {
   res.status(200).json(session);
 };
 
-exports.verify = function(req, res, callback) {
-  var sessionStr = req.cookies['ht_session'];
-  var session = JSON.parse(sessionStr);
-  var decoded = jwt.verify(session.token, PRIVATE_KEY);
-  if (session.data.validUntil !== decoded.validUntil) {
+exports.verify = function (req, res, callback) {
+  try {
+    var sessionStr = req.cookies['ht_session'];
+    var session = JSON.parse(sessionStr);
+    var decoded = jwt.verify(session.token, PRIVATE_KEY);
+    if (session.data.validUntil !== decoded.validUntil) {
+      res.status(401);
+      return;
+    }
+  } catch (err) {
     res.status(401);
     return;
   }
