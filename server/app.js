@@ -19,6 +19,9 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 // Start server
 server.listen(config.port, config.ip, function () {
   console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
